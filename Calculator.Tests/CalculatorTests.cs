@@ -146,5 +146,16 @@ public class CalculatorTests
     {
         Assert.Equal(12, Evaluator.Eval("*", 6, 2));
     }
+    [Fact]
+    public void TestDivideOperation()
+    {
+        Assert.Equal(3, Evaluator.Eval("/", 6, 2));
+    }
+    [Fact]
+    public void TestDefaultOperation()
+    {
+        var ex = Assert.Throws<Exception>(() => Evaluator.Eval("&", 6, 2));
+        Assert.Equal("unimplemented", ex.Message);
+    }
 
 }
