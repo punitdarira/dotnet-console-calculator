@@ -20,6 +20,10 @@ switch(OptionChoice){
         float Product = Evaluator.Eval("*", Number1Converted, Number2Converted);
         Console.WriteLine($"{Number1Converted} * {Number2Converted} = {Product}");
         break;
+    case "4":
+        float division = Evaluator.Eval("/", Number1Converted, Number2Converted);
+        Console.WriteLine($"{Number1Converted} / {Number2Converted} = {division}");
+        break;
     default:
         throw new Exception("unimplemented");
 }
