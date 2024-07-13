@@ -1,8 +1,7 @@
 namespace Calculator{
     public class Sine{
-        public static double Eval(double radians){
-            //return Math.Sin(radians);
-            return 0;
+        public static float Eval(double radians){
+            return (float)Math.Sin(radians);
         }
     }
 }

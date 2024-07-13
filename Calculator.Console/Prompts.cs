@@ -10,6 +10,14 @@ public class Prompts{
         Console.WriteLine("2. Subtract");
         Console.WriteLine("3. Multiply");
         Console.WriteLine("4. Divide");
+
+        Console.WriteLine("5. Cosine");
+        Console.WriteLine("6. Sine");
+        Console.WriteLine("7. Tangent");
+        Console.WriteLine("8. Factorial");
+        Console.WriteLine("9. Square Root");
+        Console.WriteLine("10. Exponential");
+
         Console.WriteLine("Type exit to quit");
     }
 
