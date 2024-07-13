@@ -164,6 +164,18 @@ public class CalculatorTests
         // Assuming Exponential.Eval takes double and returns double
         Assert.Equal(8, Exponential.Eval(2, 3), 2);
     }
+    [Fact]
+    public void TestExponentialBaseOne(){
+        // Exponential of any number with base 1 should be 1
+        Assert.Equal(1, Exponential.Eval(1, 5), 2);
+    }
+
+    [Fact]
+    public void TestExponentialNegativeExponent(){
+        // Exponential of 10 with exponent -1 should be 0.1
+        Assert.Equal(0.1, Exponential.Eval(10, -1), 1);
+    }
+
 
     [Fact]
     public void TestSquareRoot(){
@@ -172,16 +184,55 @@ public class CalculatorTests
     }
 
     [Fact]
+    public void TestSquareRootOfZero(){
+        // Square root of 0 should be 0
+        Assert.Equal(0, SquareRoot.Eval(0), 2);
+    }
+
+    [Fact]
+    public void TestSquareRootOfNonPerfectSquare(){
+        // Square root of 2, expecting a result close to 1.41421
+        Assert.Equal(1.41421, SquareRoot.Eval(2), 5);
+    }
+
+
+    [Fact]
     public void TestSine(){
         // Assuming Sine.Eval takes radians as double and returns double
         Assert.Equal(1, Sine.Eval(Math.PI / 2), 2);
     }
 
     [Fact]
+    public void TestSineZero(){
+        // Sine of 0 should be 0
+        Assert.Equal(0, Sine.Eval(0), 2);
+    }
+
+    [Fact]
+    public void TestSinePi(){
+        // Sine of PI should be very close to 0
+        Assert.Equal(0, Sine.Eval(Math.PI), 2);
+    }
+
+
+    [Fact]
     public void TestCosine(){
         // Assuming Cosine.Eval takes radians as double and returns double
         Assert.Equal(-1, Cosine.Eval(Math.PI), 2);
     }
+
+    [Fact]
+    public void TestCosineZero(){
+        // Cosine of 0 should be 1
+        Assert.Equal(1, Cosine.Eval(0), 2);
+    }
+
+    [Fact]
+    public void TestCosinePiOverTwo(){
+        // Cosine of PI/2 should be very close to 0
+        Assert.Equal(0, Cosine.Eval(Math.PI / 2), 2);
+    }
+
 
     [Fact]
     public void TestTangent(){
@@ -191,9 +242,34 @@ public class CalculatorTests
     }
 
     [Fact]
+    public void TestTangentZero(){
+        // Tangent of 0 should be 0
+        Assert.Equal(0, Tangent.Eval(0), 2);
+    }
+
+    [Fact]
+    public void TestTangentPi(){
+        // Tangent of PI should be very close to 0 due to the periodic nature of the tangent function
+        Assert.Equal(0, Tangent.Eval(Math.PI), 2);
+    }
+
+
+    [Fact]
     public void TestFactorial(){
         // Assuming Factorial.Eval takes and returns long
         Assert.Equal(120, Factorial.Eval(5));
     }
 
+    [Fact]
+    public void TestFactorialZero(){
+        // Factorial of 0 should be 1
+        Assert.Equal(1, Factorial.Eval(0));
+    }
+
+    [Fact]
+    public void TestFactorialNegative(){
+        // Factorial of a negative number is not defined and should be handled accordingly
+        // This test assumes the Factorial.Eval method throws an ArgumentException for negative inputs
+        Assert.Throws<ArgumentException>(() => Factorial.Eval(-1));
+    }
 }
