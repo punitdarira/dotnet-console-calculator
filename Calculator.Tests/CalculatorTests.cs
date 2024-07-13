@@ -158,4 +158,42 @@ public class CalculatorTests
         Assert.Equal("unimplemented", ex.Message);
     }
 
+    // new test cases below
+    [Fact]
+    public void TestExponential(){
+        // Assuming Exponential.Eval takes double and returns double
+        Assert.Equal(8, Exponential.Eval(2, 3), 2);
+    }
+
+    [Fact]
+    public void TestSquareRoot(){
+        // Assuming SquareRoot.Eval takes and returns double
+        Assert.Equal(4, SquareRoot.Eval(16), 2);
+    }
+
+    [Fact]
+    public void TestSine(){
+        // Assuming Sine.Eval takes radians as double and returns double
+        Assert.Equal(1, Sine.Eval(Math.PI / 2), 2);
+    }
+
+    [Fact]
+    public void TestCosine(){
+        // Assuming Cosine.Eval takes radians as double and returns double
+        Assert.Equal(-1, Cosine.Eval(Math.PI), 2);
+    }
+
+    [Fact]
+    public void TestTangent(){
+        // Assuming Tangent.Eval takes radians as double and returns double
+        // Note: Tangent of PI/4 is 1, but due to floating point precision, a delta is used
+        Assert.Equal(1, Tangent.Eval(Math.PI / 4), 2);
+    }
+
+    [Fact]
+    public void TestFactorial(){
+        // Assuming Factorial.Eval takes and returns long
+        Assert.Equal(120, Factorial.Eval(5));
+    }
+
 }
