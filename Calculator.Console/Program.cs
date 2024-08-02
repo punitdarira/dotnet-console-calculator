@@ -15,7 +15,7 @@ while (true){
     string? Number1 = Console.ReadLine();
     string? Number2 = "0";
 
-    if (!new[] { "5", "6", "7", "8", "9", "10" }.Contains(OptionChoice)){
+    if (!new[] { "5", "6", "7", "8", "9", "10", "11" }.Contains(OptionChoice)){
         Console.WriteLine("Enter number 2: ");
         Number2 = Console.ReadLine();
     }
@@ -58,6 +58,10 @@ while (true){
         case "10":
             float exponential = Evaluator.Eval("E", Number1Converted, Number2Converted);
             Console.WriteLine($" Exponential of {Number1Converted} = {exponential}");
+            break;
+        case "11":
+            float Inverse = Evaluator.Eval("I", Number1Converted);
+            Console.WriteLine($" Inverse of {Number1Converted} = {Inverse}");
             break;
         default:
             throw new Exception("unimplemented");

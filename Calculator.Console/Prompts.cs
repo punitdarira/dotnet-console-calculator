@@ -17,6 +17,7 @@ public class Prompts{
         Console.WriteLine("8. Factorial");
         Console.WriteLine("9. Square Root");
         Console.WriteLine("10. Exponential");
+        Console.WriteLine("11. Inverse");
 
         Console.WriteLine("Type exit to quit");
     }

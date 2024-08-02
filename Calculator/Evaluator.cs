@@ -30,6 +30,9 @@ namespace Calculator{
                 case "E":
                     result = Exponential.Eval(Operands[0], Operands[0]);
                     break;
+                case "I":
+                    result = Inverse.Eval(Operands[0]);
+                    break;
                 default:
                     throw new Exception("unimplemented");
             }
