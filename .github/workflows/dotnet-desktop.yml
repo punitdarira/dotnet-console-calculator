@@ -40,6 +40,10 @@ jobs:
     - name: Generate code coverage report
       run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Html
 
+    # List contents of the coverage directory for debugging
+    - name: List coverage directory contents
+      run: ls -R coverage
+      
     # Check code coverage threshold
     - name: Check code coverage
       shell: pwsh
