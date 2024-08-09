@@ -31,6 +31,9 @@ jobs:
           title: dotnet code coverage
           reporttypes: 'MarkdownSummary;'
 
+      - name: Print Summary.md contents
+        run: cat ./coverage-results/Summary.md
+
       - name: Create a status check for the code coverage results
         id: dotnet-coverage-check
         # You may also reference just the major or major.minor version
