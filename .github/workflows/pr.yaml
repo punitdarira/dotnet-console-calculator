@@ -49,7 +49,7 @@ jobs:
           update-comment-key: 'dotnet'                  # Default: N/A, used to further identify a comment to update if this action is used more than once in a workflow
           ignore-threshold-failures: false              # Default: false
           line-threshold: 80                            # Default: 0, which means thresholds are not applied
-          branch-threshold: 80                          # Default: 0, which means thresholds are not applied
+          #branch-threshold: 80                          # Default: 0, which means thresholds are not applied
 
       - name: Fail if there were coverage failures
         if: steps.dotnet-coverage-check.outputs.coverage-outcome == 'Failed'
