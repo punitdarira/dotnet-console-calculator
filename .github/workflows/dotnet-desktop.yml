@@ -52,7 +52,9 @@ jobs:
         $coverage = [xml](Get-Content $coverageFile.FullName)
         Write-Output '$coverage = [xml](Get-Content $coverageFile.FullName)'
         Write-Output $coverage.OuterXml
-        $lineRate = [double]$coverage.coverage['line-rate']
+        $lineRateAttribute = $coverage.coverage.Attributes['line-rate']
+        Write-Output "Line rate attribute: $lineRateAttribute"
+        $lineRate = [double]$lineRateAttribute.Value
         Write-Output "Line rate: $lineRate"
         if ($lineRate -lt 0.80) {
           Write-Error "Code coverage is below 80% ($lineRate)"
