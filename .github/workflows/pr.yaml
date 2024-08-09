@@ -36,7 +36,7 @@ jobs:
         uses: im-open/process-code-coverage-summary@v2.2.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          summary-file: './coverage-results/dotnet-summary.md'
+          summary-file: './coverage-results/Summary.md'
           report-name: 'MyProj .NET Code Coverage'      # Default: Code Coverage Results
           check-name: 'dotnet code coverage'            # Default: code coverage
           create-status-check: true                     # Default: true
