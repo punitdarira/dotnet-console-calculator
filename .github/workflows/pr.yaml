@@ -21,12 +21,12 @@ jobs:
 
       - name: dotnet test with coverage
         continue-on-error: true
-        run: dotnet test 'calculator.sln' --logger trx --configuration Release /property:CollectCoverage=True /property:CoverletOutputFormat=opencover
+        run: dotnet test --collect:"XPlat Code Coverage"
 
       - name: ReportGenerator
         uses: im-open/code-coverage-report-generator@4
         with:
-          reports: './Calculator.Tests/TestResults/*.trx'
+          reports: './Calculator.Tests/TestResults/**/coverage.cobertura.xml'
           targetdir: './coverage-results'
           title: dotnet code coverage
           reporttypes: 'MarkdownSummary;'
