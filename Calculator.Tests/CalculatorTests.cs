@@ -209,18 +209,16 @@ public class CalculatorTests
     }
 
     [Fact]
-    public void TestSinePi(){
-        // Sine of PI should be very close to 0
-        Assert.Equal(0, Sine.Eval(Math.PI), 2);
+    public void TestSinePi()
+    {
+        Assert.Equal(1, Evaluator.Eval("S", (float)Math.PI / 2), 2);
     }
-
 
     [Fact]
-    public void TestCosine(){
-        // Assuming Cosine.Eval takes radians as double and returns double
-        Assert.Equal(-1, Cosine.Eval(Math.PI), 2);
+    public void TestCosine()
+    {
+        Assert.Equal(-1, Evaluator.Eval("CS", (float)Math.PI), 2);
     }
-
     [Fact]
     public void TestCosineZero(){
         // Cosine of 0 should be 1
@@ -232,15 +230,11 @@ public class CalculatorTests
         // Cosine of PI/2 should be very close to 0
         Assert.Equal(0, Cosine.Eval(Math.PI / 2), 2);
     }
-
-
     [Fact]
-    public void TestTangent(){
-        // Assuming Tangent.Eval takes radians as double and returns double
-        // Note: Tangent of PI/4 is 1, but due to floating point precision, a delta is used
-        Assert.Equal(1, Tangent.Eval(Math.PI / 4), 2);
+    public void TestTangent()
+    {
+        Assert.Equal(1, Evaluator.Eval("T", (float)Math.PI / 4), 2);
     }
-
     [Fact]
     public void TestTangentZero(){
         // Tangent of 0 should be 0
@@ -253,11 +247,10 @@ public class CalculatorTests
         Assert.Equal(0, Tangent.Eval(Math.PI), 2);
     }
 
-
     [Fact]
-    public void TestFactorial(){
-        // Assuming Factorial.Eval takes and returns long
-        Assert.Equal(120, Factorial.Eval(5));
+    public void TestFactorial()
+    {
+        Assert.Equal(120, Evaluator.Eval("F", 5));
     }
 
     [Fact]
@@ -272,4 +265,16 @@ public class CalculatorTests
         // This test assumes the Factorial.Eval method throws an ArgumentException for negative inputs
         Assert.Throws<ArgumentException>(() => Factorial.Eval(-1));
     }
+
+        [Fact]
+    public void TestInverse(){
+        Assert.Equal(0.5, Inverse.Eval(2));
+    }
+
+    [Fact]
+    public void TestInverseException(){
+        Assert.Throws<DivideByZeroException>(() => Inverse.Eval(0));
+    }
+
+
 }
