@@ -43,12 +43,13 @@ jobs:
     # List contents of the coverage directory for debugging
     - name: List coverage directory contents
       run: ls -R coverage
-      
+
     # Check code coverage threshold
     - name: Check code coverage
       shell: pwsh
       run: |
-        $coverage = [xml](Get-Content coverage/cobertura.xml)
+        $coverageFile = Get-ChildItem -Path 'Calculator.Tests/TestResults' -Recurse -Filter 'coverage.cobertura.xml' | Select-Object -First 1
+        $coverage = [xml](Get-Content $coverageFile.FullName)
         $lineRate = [double]$coverage.coverage['line-rate']
         if ($lineRate -lt 0.80) {
           Write-Error "Code coverage is below 80% ($lineRate)"
