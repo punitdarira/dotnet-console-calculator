@@ -1,0 +1,55 @@
+name: CI Build
+
+on:
+  pull_request:
+    branches:
+      - main
+      
+jobs:
+  ci:
+    runs-on: [ubuntu-20.04]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # dotnet tests
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.x
+
+      - name: dotnet test with coverage
+        continue-on-error: true
+        run: dotnet test 'calculator.sln' --logger trx --configuration Release /property:CollectCoverage=True /property:CoverletOutputFormat=opencover
+
+      - name: ReportGenerator
+        uses: im-open/code-coverage-report-generator@4
+        with:
+          reports: '*/**/coverage.opencover.xml'
+          targetdir: './coverage-results'
+          title: dotnet code coverage
+          reporttypes: 'MarkdownSummary;'
+          assemblyfilters: '-xunit*;-Dapper;-MyProj.Tests.Shared;'
+
+      - name: Create a status check for the code coverage results
+        id: dotnet-coverage-check
+        # You may also reference just the major or major.minor version
+        uses: im-open/process-code-coverage-summary@v2.2.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          summary-file: './coverage-results/dotnet-summary.md'
+          report-name: 'MyProj .NET Code Coverage'      # Default: Code Coverage Results
+          check-name: 'dotnet code coverage'            # Default: code coverage
+          create-status-check: true                     # Default: true
+          create-pr-comment: true                       # Default: true
+          update-comment-if-one-exists: true            # Default: true
+          update-comment-key: 'dotnet'                  # Default: N/A, used to further identify a comment to update if this action is used more than once in a workflow
+          ignore-threshold-failures: false              # Default: false
+          line-threshold: 80                            # Default: 0, which means thresholds are not applied
+          branch-threshold: 80                          # Default: 0, which means thresholds are not applied
+
+      - name: Fail if there were coverage failures
+        if: steps.dotnet-coverage-check.outputs.coverage-outcome == 'Failed'
+        run: |
+          echo "There were code coverage threshold failures."
+          exit 1
